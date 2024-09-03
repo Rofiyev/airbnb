@@ -95,7 +95,7 @@ const ListingClient: FC<Props> = ({
 
   return (
     <Container>
-      <div className="max-w-screen-lg mx-auto">
+      <div className="max-w-screen-xl mx-auto">
         <div className="flex flex-col gap-6">
           <ListingHead
             id={listing.id}
