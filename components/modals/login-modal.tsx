@@ -34,7 +34,6 @@ const LoginModal = () => {
   });
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    console.log(data);
     setIsLoading(true);
 
     signIn("credentials", {...data }).then((callback) => {
