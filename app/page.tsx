@@ -6,6 +6,8 @@ import ClientOnly from "@/components/client-only";
 import ListingCard from "@/components/listings/listing-card";
 import getCurrentUser from "@/actions/getCurrentUser";
 
+export const dynamic = "force-static"; // 'auto' | 'force-dynamic' | 'error' | 'force-static';
+
 interface Props {
   searchParams: IListingsParams;
 }
