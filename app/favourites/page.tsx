@@ -1,7 +1,7 @@
 import getFavouriteListings from "@/actions/getFavouriteListings";
 import EmptyState from "../_components/empty-state";
 import getCurrentUser from "@/actions/getCurrentUser";
-import FavouritesClient from "./favourites-client";
+import FavouritesClient from "./_components/favourites-client";
 
 export default async function FavouritesPage() {
   const listings = await getFavouriteListings();

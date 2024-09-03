@@ -1,10 +1,10 @@
 "use client";
 
-import { Listings, User } from "@prisma/client";
 import { FC } from "react";
-import Container from "../_components/container";
-import Heading from "../_components/heading";
-import ListingCard from "../_components/listings/listing-card";
+import { Listings, User } from "@prisma/client";
+import Container from "@/app/_components/container";
+import Heading from "@/app/_components/heading";
+import ListingCard from "@/app/_components/listings/listing-card";
 
 interface Props {
   listings: Listings[];
