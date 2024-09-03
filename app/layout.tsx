@@ -3,11 +3,13 @@ import { Nunito } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import getCurrentUser from "@/actions/getCurrentUser";
-import Navbar from "./_components/navbar/navbar";
-import RegisterModal from "./_components/modals/register-modal";
-import LoginModal from "./_components/modals/login-modal";
-import RentModal from "./_components/modals/rent-modal";
-import SearchModal from "./_components/modals/search-modal";
+import Navbar from "@/components/navbar/navbar";
+import RegisterModal from "@/components/modals/register-modal";
+import LoginModal from "@/components/modals/login-modal";
+import RentModal from "@/components/modals/rent-modal";
+import SearchModal from "@/components/modals/search-modal";
+import Loader from "@/components/loader";
+import { Suspense } from "react";
 
 const nunitoFont = Nunito({ subsets: ["latin"], weight: "400" });
 
@@ -27,13 +29,15 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={nunitoFont.className}>
-        <Navbar currentUser={currentUser} />
-        <Toaster position="top-center" reverseOrder={true} />
-        <RegisterModal />
-        <LoginModal />
-        <RentModal />
-        <SearchModal />
-        <div className="pt-28 pb-20">{children}</div>
+        <Suspense fallback={<Loader />}>
+          <Navbar currentUser={currentUser} />
+          <Toaster position="top-center" reverseOrder={true} />
+          <RegisterModal />
+          <LoginModal />
+          <RentModal />
+          <SearchModal />
+          <div className="pt-28 pb-20">{children}</div>
+        </Suspense>
       </body>
     </html>
   );

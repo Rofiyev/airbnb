@@ -5,9 +5,9 @@ import { FC, useCallback, useState } from "react";
 import { Listings, User } from "@prisma/client";
 import axios from "axios";
 import toast from "react-hot-toast";
-import Container from "@/app/_components/container";
-import Heading from "@/app/_components/heading";
-import ListingCard from "@/app/_components/listings/listing-card";
+import Container from "@/components/container";
+import Heading from "@/components/heading";
+import ListingCard from "@/components/listings/listing-card";
 
 interface Props {
   listings: Listings[];

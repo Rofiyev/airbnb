@@ -1,5 +1,5 @@
 import getFavouriteListings from "@/actions/getFavouriteListings";
-import EmptyState from "../_components/empty-state";
+import EmptyState from "@/components/empty-state";
 import getCurrentUser from "@/actions/getCurrentUser";
 import FavouritesClient from "./_components/favourites-client";
 

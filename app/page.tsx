@@ -1,9 +1,9 @@
 import getListings, { IListingsParams } from "@/actions/getListings";
 import { Listings } from "@prisma/client";
-import Container from "./_components/container";
-import EmptyState from "./_components/empty-state";
-import ClientOnly from "./_components/client-only";
-import ListingCard from "./_components/listings/listing-card";
+import Container from "@/components/container";
+import EmptyState from "@/components/empty-state";
+import ClientOnly from "@/components/client-only";
+import ListingCard from "@/components/listings/listing-card";
 import getCurrentUser from "@/actions/getCurrentUser";
 
 interface Props {

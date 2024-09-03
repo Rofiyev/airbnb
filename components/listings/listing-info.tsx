@@ -8,7 +8,7 @@ import useCountries from "@/hooks/useCountries";
 import Avatar from "../avatar";
 import ListingCategory from "./listing-category";
 
-const Map = dynamic(() => import("@/app/_components/map"), { ssr: false });
+const Map = dynamic(() => import("../map"), { ssr: false });
 
 interface Props {
   user: User | null;

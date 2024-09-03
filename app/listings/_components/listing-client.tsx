@@ -8,11 +8,11 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { Listings, Reservations, User } from "@prisma/client";
 import { categories } from "@/constants";
-import Container from "@/app/_components/container";
-import ListingHead from "@/app/_components/listings/listing-head";
-import ListingInfo from "@/app/_components/listings/listing-info";
+import Container from "@/components/container";
+import ListingHead from "@/components/listings/listing-head";
+import ListingInfo from "@/components/listings/listing-info";
 import useLoginModal from "@/hooks/useLoginModal";
-import ListingReservation from "@/app/_components/listings/listing-reservation";
+import ListingReservation from "@/components/listings/listing-reservation";
 
 const initialDateRange = {
   startDate: new Date(),
