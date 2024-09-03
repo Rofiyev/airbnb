@@ -5,6 +5,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import prisma from "@/libs/prismadb";
 import bcrypt from "bcrypt";
+import { User } from "@prisma/client";
 
 export const authOptions: AuthOptions = {
   adapter: PrismaAdapter(prisma),
@@ -49,6 +50,17 @@ export const authOptions: AuthOptions = {
   ],
   pages: {
     signIn: "/",
+  },
+  callbacks: {
+    async session({ session, token }) {
+      session.user = token.user as User;
+      return session;
+    },
+    async jwt({ token, user }) {
+      if (user) token.user = user;
+
+      return token;
+    },
   },
   debug: process.env.NODE_ENV === "development",
   session: {
