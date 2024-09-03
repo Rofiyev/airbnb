@@ -37,7 +37,7 @@ const LoginModal = () => {
     console.log(data);
     setIsLoading(true);
 
-    signIn("credentials", { redirect: false, ...data }).then((callback) => {
+    signIn("credentials", {...data }).then((callback) => {
       if (callback?.ok) {
         toast.success("Login your account successfully!");
         router.refresh();
