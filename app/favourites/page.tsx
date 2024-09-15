@@ -1,11 +1,9 @@
 import getFavouriteListings from "@/actions/getFavouriteListings";
 import EmptyState from "@/components/empty-state";
-import getCurrentUser from "@/actions/getCurrentUser";
 import FavouritesClient from "./_components/favourites-client";
 
 export default async function FavouritesPage() {
   const listings = await getFavouriteListings();
-  const currentUser = await getCurrentUser();
 
   if (listings.length === 0)
     return (
@@ -15,5 +13,5 @@ export default async function FavouritesPage() {
       />
     );
 
-  return <FavouritesClient listings={listings} currentUser={currentUser} />;
+  return <FavouritesClient listings={listings} />;
 }

@@ -24,7 +24,7 @@ const ImageUpload: FC<Props> = ({ onChange, value }) => {
       {({ open }) => {
         const handleOnClick = (e: MouseEvent<HTMLDivElement>) => {
           e.preventDefault();
-          open();
+          open && open();
         };
         return (
           <div

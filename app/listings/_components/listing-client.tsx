@@ -13,6 +13,7 @@ import ListingHead from "@/components/listings/listing-head";
 import ListingInfo from "@/components/listings/listing-info";
 import useLoginModal from "@/hooks/useLoginModal";
 import ListingReservation from "@/components/listings/listing-reservation";
+import useCurrentUser from "@/hooks/useCurrentUser";
 
 const initialDateRange = {
   startDate: new Date(),
@@ -25,14 +26,10 @@ interface Props {
   listing: Listings & {
     user: User | null;
   };
-  currentUser?: User | null;
 }
 
-const ListingClient: FC<Props> = ({
-  listing,
-  currentUser,
-  reservations = [],
-}) => {
+const ListingClient: FC<Props> = ({ listing, reservations = [] }) => {
+  const { data: currentUser } = useCurrentUser();
   const loginModal = useLoginModal();
   const router = useRouter();
 

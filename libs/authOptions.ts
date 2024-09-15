@@ -47,12 +47,25 @@ export const authOptions: AuthOptions = {
       },
     }),
   ],
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) token.id = user.id;
+
+      return token;
+    },
+    async session({ session, token }: any) {
+      if (token?.id) session.user.id = token.id;
+      return session;
+    },
+  },
   pages: {
     signIn: "/",
   },
   debug: process.env.NODE_ENV === "development",
   session: {
     strategy: "jwt",
+    maxAge: 10 * 24 * 60 * 60,
   },
+
   secret: process.env.NEXTAUTH_SECRET!,
 };
