@@ -1,16 +1,16 @@
+import { authOptions } from "@/libs/authOptions";
 import prisma from "@/libs/prismadb";
-import { getSession } from "next-auth/react";
+import { getServerSession } from "next-auth";
 
 export default async function getFavouriteListings() {
   try {
-    const session = await getSession();
+    const session = await getServerSession(authOptions);
 
     if (!session?.user) return [];
 
     const currentUser = await prisma.user.findUnique({
       where: {
-        // @ts-ignore
-        id: session.user.id as string,
+        id: session.user.id,
       },
     });
 
@@ -23,7 +23,7 @@ export default async function getFavouriteListings() {
     });
 
     return favourites;
-  } catch (error: any) {
-    throw new Error(error);
+  } catch (error) {
+    throw new Error((error as Error).message);
   }
 }

@@ -2,7 +2,7 @@
 
 import { FC, useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Listings, Reservations, User } from "@prisma/client";
+import { Listings, Reservations } from "@prisma/client";
 import axios from "axios";
 import toast from "react-hot-toast";
 import Container from "@/components/container";
@@ -37,22 +37,24 @@ const ReservationsClient: FC<Props> = ({ reservations }) => {
 
   return (
     <Container>
-      <Heading title="Reservations" subtitle="Bookings on your properties" />
-      <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8">
-        {reservations.map((reservation) => {
-          if (reservation.listings)
-            return (
-              <ListingCard
-                key={reservation.id}
-                data={reservation.listings}
-                reservation={reservation}
-                actionId={reservation.id}
-                onAction={onCancel}
-                disabled={deletingId === reservation.id}
-                actionLabel="Cancel guest reservation"
-              />
-            );
-        })}
+      <div className="pt-32 pb-10">
+        <Heading title="Reservations" subtitle="Bookings on your properties" />
+        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8">
+          {reservations.map((reservation) => {
+            if (reservation.listings)
+              return (
+                <ListingCard
+                  key={reservation.id}
+                  data={reservation.listings}
+                  reservation={reservation}
+                  actionId={reservation.id}
+                  onAction={onCancel}
+                  disabled={deletingId === reservation.id}
+                  actionLabel="Cancel guest reservation"
+                />
+              );
+          })}
+        </div>
       </div>
     </Container>
   );

@@ -67,8 +67,7 @@ const ListingClient: FC<Props> = ({ listing, reservations = [] }) => {
       .then(() => {
         toast.success("Listing reserved successfully!");
         setDateRange(initialDateRange);
-        // Redirect to /trips
-        router.refresh();
+        router.push('/trips');
       })
       .catch(() => toast.error("Something went wrong!"))
       .finally(() => setIsLoading(false));
@@ -92,7 +91,7 @@ const ListingClient: FC<Props> = ({ listing, reservations = [] }) => {
 
   return (
     <Container>
-      <div className="max-w-screen-lg mx-auto">
+      <div className="max-w-screen-lg mx-auto pt-28 pb-10">
         <div className="flex flex-col gap-6">
           <ListingHead
             id={listing.id}

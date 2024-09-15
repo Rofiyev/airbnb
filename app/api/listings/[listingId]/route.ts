@@ -11,30 +11,34 @@ export async function DELETE(
   request: Request,
   { params }: { params: IParams }
 ) {
-  const session = await getServerSession(authOptions);
+  try {
+    const session = await getServerSession(authOptions);
 
-  if (!session?.user?.email)
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    if (!session?.user?.email)
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const currentUser = await prisma.user.findUnique({
-    where: {
-      email: session.user.email,
-    },
-  });
+    const currentUser = await prisma.user.findUnique({
+      where: {
+        email: session.user.email,
+      },
+    });
 
-  if (!currentUser) return NextResponse.error();
+    if (!currentUser) return NextResponse.error();
 
-  const { listingId } = params;
+    const { listingId } = params;
 
-  if (!listingId || typeof listingId !== "string")
-    throw new Error("Invalid ID");
+    if (!listingId || typeof listingId !== "string")
+      throw new Error("Invalid ID");
 
-  const listing = await prisma.listings.deleteMany({
-    where: {
-      id: listingId,
-      userId: currentUser.id,
-    },
-  });
+    const listing = await prisma.listings.deleteMany({
+      where: {
+        id: listingId,
+        userId: currentUser.id,
+      },
+    });
 
-  return NextResponse.json(listing);
+    return NextResponse.json(listing);
+  } catch (error) {
+    return NextResponse.json({ message: "Server errro", status: 500 });
+  }
 }

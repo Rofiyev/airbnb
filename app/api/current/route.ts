@@ -12,7 +12,7 @@ export async function GET() {
 
     const currentUser = await prisma.user.findUnique({
       where: {
-        email: session.user.email,
+        email: session.user.email as string,
       },
     });
 
@@ -21,7 +21,6 @@ export async function GET() {
 
     return NextResponse.json(currentUser);
   } catch (error) {
-    console.error("API error:", error);
-    return NextResponse.json({ error: "Serverda xatolik" }, { status: 500 });
+    return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }

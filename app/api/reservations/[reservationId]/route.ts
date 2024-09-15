@@ -11,33 +11,37 @@ export async function DELETE(
   request: Request,
   { params }: { params: IParams }
 ) {
-  const session = await getServerSession(authOptions);
+  try {
+    const session = await getServerSession(authOptions);
 
-  if (!session?.user?.email)
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    if (!session?.user?.email)
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const currentUser = await prisma.user.findUnique({
-    where: {
-      email: session.user.email,
-    },
-  });
+    const currentUser = await prisma.user.findUnique({
+      where: {
+        email: session.user.email,
+      },
+    });
 
-  if (!currentUser) return NextResponse.error();
+    if (!currentUser) return NextResponse.error();
 
-  const { reservationId } = params;
+    const { reservationId } = params;
 
-  if (!reservationId || typeof reservationId !== "string")
-    throw new Error("Invalid ID");
+    if (!reservationId || typeof reservationId !== "string")
+      throw new Error("Invalid ID");
 
-  const reservation = await prisma.reservations.deleteMany({
-    where: {
-      id: reservationId,
-      OR: [
-        { userId: currentUser.id },
-        { listings: { userId: currentUser.id } },
-      ],
-    },
-  });
+    const reservation = await prisma.reservations.deleteMany({
+      where: {
+        id: reservationId,
+        OR: [
+          { userId: currentUser.id },
+          { listings: { userId: currentUser.id } },
+        ],
+      },
+    });
 
-  return NextResponse.json(reservation);
+    return NextResponse.json(reservation);
+  } catch (error) {
+    return NextResponse.json({ message: "Server errro", status: 500 });
+  }
 }

@@ -3,7 +3,7 @@
 import { FC, MouseEvent, useCallback, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { format } from "date-fns";
-import { Listings, Reservations, User } from "@prisma/client";
+import { Listings, Reservations } from "@prisma/client";
 import useCountries from "@/hooks/useCountries";
 import Image from "next/image";
 import HeartButton from "../heart-button";

@@ -4,6 +4,8 @@ import EmptyState from "@/components/empty-state";
 import getReservations from "@/actions/getReservations";
 import ListingClient from "../_components/listing-client";
 
+export const dynamic = "force-static"; // 'auto' | 'force-dynamic' | 'error' | 'force-static';
+
 interface IParams {
   listingId: string;
 }
@@ -16,10 +18,7 @@ export default async function ListingIdPage({ params }: { params: IParams }) {
 
   return (
     <ClientOnly>
-      <ListingClient
-        listing={listing}
-        reservations={reservations}
-      />
+      <ListingClient listing={listing} reservations={reservations} />
     </ClientOnly>
   );
 }

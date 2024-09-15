@@ -18,7 +18,7 @@ export default function Providers({ children }: { children: ReactNode }) {
       <LoginModal />
       <RentModal />
       <SearchModal />
-      <div className="pb-20 pt-32"> {children}</div>
+      {children}
     </SessionProvider>
   );
 }

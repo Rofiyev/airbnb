@@ -16,20 +16,16 @@ const CategoryBox: FC<Props> = ({ icon: Icon, label, selected }) => {
   const params = useSearchParams();
 
   const handleClick = useCallback(() => {
-    let currentQuery: {
-      category?: string;
-    } = {};
+    let currentQuery: Record<string, any> = {};
 
     if (params) currentQuery = qs.parse(params.toString());
 
-    const updateQuery: {
-      category?: string;
-    } = {
+    const updateQuery: Record<string, any> = {
       ...currentQuery,
       category: label,
     };
 
-    if (params?.get("category") === label) delete updateQuery.category;
+    if (params.get("category") === label) delete updateQuery.category;
 
     const url = qs.stringifyUrl(
       { url: "/", query: updateQuery },

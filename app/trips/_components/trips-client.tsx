@@ -37,25 +37,27 @@ const TripsClient: FC<Props> = ({ reservations }) => {
 
   return (
     <Container>
-      <Heading
-        title="Trips"
-        subtitle="Where you have been and where are you going"
-      />
-      <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8">
-        {reservations.map((reservation) => {
-          if (reservation.listings)
-            return (
-              <ListingCard
-                key={reservation.id}
-                data={reservation.listings}
-                reservation={reservation}
-                actionId={reservation.id}
-                onAction={onCancel}
-                disabled={deletingId === reservation.id}
-                actionLabel="Cancel reservation"
-              />
-            );
-        })}
+      <div className="pt-32 pb-10">
+        <Heading
+          title="Trips"
+          subtitle="Where you have been and where are you going"
+        />
+        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8">
+          {reservations.map((reservation) => {
+            if (reservation.listings)
+              return (
+                <ListingCard
+                  key={reservation.id}
+                  data={reservation.listings}
+                  reservation={reservation}
+                  actionId={reservation.id}
+                  onAction={onCancel}
+                  disabled={deletingId === reservation.id}
+                  actionLabel="Cancel reservation"
+                />
+              );
+          })}
+        </div>
       </div>
     </Container>
   );

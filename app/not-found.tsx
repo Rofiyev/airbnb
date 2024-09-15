@@ -1,5 +1,7 @@
 import EmptyState from "@/components/empty-state";
 
-export default async function NotFound() {
+export const dynamic = "force-static"; // 'auto' | 'force-dynamic' | 'error' | 'force-static';
+
+export default function NotFound() {
   return <EmptyState showReset />;
 }

@@ -19,7 +19,7 @@ export default async function Home({ searchParams }: Props) {
   return (
     <ClientOnly>
       <Container>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8 mt-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8 pt-48 pb-10">
           {listings.map((listing: Listings) => (
             <ListingCard key={listing.id} data={listing} />
           ))}
