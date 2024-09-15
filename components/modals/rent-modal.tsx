@@ -92,10 +92,10 @@ const RentModal = () => {
       })
       .then(() => {
         toast.success("Listing created successfully!");
-        router.refresh();
         reset();
         setStep(STEPS.CATEGORY);
         rentModal.onClose();
+        return router.refresh();
       })
       .catch(() => toast.error("Something went wrong!"))
       .finally(() => setIsLoading(false));
