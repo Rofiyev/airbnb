@@ -2,19 +2,19 @@
 
 import { useRouter } from "next/navigation";
 import { FC, useCallback, useState } from "react";
-import { Listings, User } from "@prisma/client";
+import { Listings } from "@prisma/client";
 import axios from "axios";
 import toast from "react-hot-toast";
 import Container from "@/components/container";
 import Heading from "@/components/heading";
 import ListingCard from "@/components/listings/listing-card";
+import useCurrentUser from "@/hooks/useCurrentUser";
 
 interface Props {
   listings: Listings[];
-  currentUser?: User;
 }
 
-const PropertiesClient: FC<Props> = ({ listings, currentUser }) => {
+const PropertiesClient: FC<Props> = ({ listings }) => {
   const router = useRouter();
   const [deletingId, setDeletingId] = useState<string>("");
 
@@ -46,7 +46,6 @@ const PropertiesClient: FC<Props> = ({ listings, currentUser }) => {
             onAction={onCancel}
             disabled={deletingId === listing.id}
             actionLabel="Delete property"
-            currentUser={currentUser}
           />
         ))}
       </div>

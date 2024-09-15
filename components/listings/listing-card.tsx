@@ -8,6 +8,7 @@ import useCountries from "@/hooks/useCountries";
 import Image from "next/image";
 import HeartButton from "../heart-button";
 import Button from "../button";
+import useCurrentUser from "@/hooks/useCurrentUser";
 
 interface Props {
   data: Listings;
@@ -16,18 +17,17 @@ interface Props {
   disabled?: boolean;
   actionLabel?: string;
   actionId?: string;
-  currentUser?: User | null;
 }
 
 const ListingCard: FC<Props> = ({
   data,
-  currentUser,
   actionId = "",
   actionLabel,
   disabled,
   onAction,
   reservation,
 }) => {
+  const { data: currentUser } = useCurrentUser();
   const router = useRouter();
   const { getByValue } = useCountries();
 

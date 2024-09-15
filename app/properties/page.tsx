@@ -1,16 +1,17 @@
-import getCurrentUser from "@/actions/getCurrentUser";
 import EmptyState from "@/components/empty-state";
 import getListings from "@/actions/getListings";
 import PropertiesClient from "./_components/properties-client";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/libs/authOptions";
 
 export default async function PropertiesPage() {
-  const currentUser = await getCurrentUser();
+  const session = await getServerSession(authOptions);
 
-  if (!currentUser)
+  if (!session?.user)
     return <EmptyState title="Unauthorized" subtitle="Plase login" />;
 
   const listings = await getListings({
-    userId: currentUser.id,
+    userId: session.user?.id,
   });
 
   if (listings.length === 0)
@@ -21,5 +22,5 @@ export default async function PropertiesPage() {
       />
     );
 
-  return <PropertiesClient listings={listings} currentUser={currentUser} />;
+  return <PropertiesClient listings={listings} />;
 }

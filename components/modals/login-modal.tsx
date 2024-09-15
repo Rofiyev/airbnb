@@ -34,18 +34,19 @@ const LoginModal = () => {
   });
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    console.log(data);
     setIsLoading(true);
 
-    signIn("credentials", { redirect: false, ...data }).then((callback) => {
-      if (callback?.ok) {
-        toast.success("Login your account successfully!");
-        router.refresh();
-        loginModal.onClose();
-      } else if (callback?.error) {
-        toast.error(callback.error);
-      }
-    });
+    signIn("credentials", { redirect: false, ...data })
+      .then((callback) => {
+        if (callback?.ok) {
+          toast.success("Login your account successfully!");
+          router.refresh();
+          loginModal.onClose();
+        } else if (callback?.error) {
+          toast.error(callback.error);
+        }
+      })
+      .finally(() => setIsLoading(false));
   };
 
   const toggle = useCallback(() => {

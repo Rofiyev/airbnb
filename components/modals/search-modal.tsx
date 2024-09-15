@@ -40,8 +40,6 @@ const SearchModal = () => {
     [location]
   );
 
-  console.log(location);
-
   const onBack = useCallback(() => setStep((value) => value - 1), []);
   const onNext = useCallback(() => setStep((value) => value + 1), []);
 

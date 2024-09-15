@@ -1,16 +1,17 @@
-import getCurrentUser from "@/actions/getCurrentUser";
 import EmptyState from "@/components/empty-state";
 import getReservations from "@/actions/getReservations";
 import ReservationsClient from "./_components/reservations-client";
+import { authOptions } from "@/libs/authOptions";
+import { getServerSession } from "next-auth/next";
 
 export default async function ReservationPage() {
-  const currentUser = await getCurrentUser();
+  const session = await getServerSession(authOptions);
 
-  if (!currentUser)
+  if (!session?.user)
     return <EmptyState title="Unauthorized" subtitle="Plase login" />;
 
   const reservations = await getReservations({
-    authorId: currentUser.id,
+    authorId: session.user.id,
   });
 
   if (reservations.length === 0)
@@ -21,7 +22,5 @@ export default async function ReservationPage() {
       />
     );
 
-  return (
-    <ReservationsClient reservations={reservations} currentUser={currentUser} />
-  );
+  return <ReservationsClient reservations={reservations} />;
 }

@@ -13,10 +13,9 @@ interface Props {
   reservations: (Reservations & {
     listings: Listings | null;
   })[];
-  currentUser: User | null;
 }
 
-const ReservationsClient: FC<Props> = ({ currentUser, reservations }) => {
+const ReservationsClient: FC<Props> = ({ reservations }) => {
   const router = useRouter();
   const [deletingId, setDeletingId] = useState<string>("");
 
@@ -51,7 +50,6 @@ const ReservationsClient: FC<Props> = ({ currentUser, reservations }) => {
                 onAction={onCancel}
                 disabled={deletingId === reservation.id}
                 actionLabel="Cancel guest reservation"
-                currentUser={currentUser}
               />
             );
         })}

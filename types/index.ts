@@ -1,3 +1,4 @@
+import NextAuth, { DefaultSession } from "next-auth";
 import { IconType } from "react-icons";
 
 export type TCategory = {
@@ -11,3 +12,11 @@ export type TMenuItem = {
   icon: IconType;
   route: string;
 };
+
+declare module "next-auth" {
+  interface Session {
+    user: {
+      id: string;
+    } & DefaultSession["user"];
+  }
+}

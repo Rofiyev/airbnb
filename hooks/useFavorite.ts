@@ -1,16 +1,16 @@
 import { useRouter } from "next/navigation";
 import { MouseEvent, useCallback, useMemo } from "react";
-import { User } from "@prisma/client";
 import useLoginModal from "./useLoginModal";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { User } from "@prisma/client";
 
 interface IUserFavorite {
   listingId: string;
   currentUser?: User | null;
 }
 
-const useFavorite = ({ currentUser, listingId }: IUserFavorite) => {
+const useFavorite = ({ listingId, currentUser }: IUserFavorite) => {
   const router = useRouter();
   const loginModal = useLoginModal();
 
