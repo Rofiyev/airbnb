@@ -4,7 +4,7 @@ import EmptyState from "@/components/empty-state";
 import getReservations from "@/actions/getReservations";
 import ListingClient from "../_components/listing-client";
 
-export const dynamic = "force-static"; // 'auto' | 'force-dynamic' | 'error' | 'force-static';
+export const dynamic = "force-dynamic";
 
 interface IParams {
   listingId: string;

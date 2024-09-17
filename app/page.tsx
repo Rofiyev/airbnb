@@ -5,7 +5,7 @@ import EmptyState from "@/components/empty-state";
 import ClientOnly from "@/components/client-only";
 import ListingCard from "@/components/listings/listing-card";
 
-export const dynamic = "force-static"; // 'auto' | 'force-dynamic' | 'error' | 'force-static';
+export const dynamic = "force-dynamic";
 
 interface Props {
   searchParams: IListingsParams;

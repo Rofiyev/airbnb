@@ -4,7 +4,7 @@ import ReservationsClient from "./_components/reservations-client";
 import { authOptions } from "@/libs/authOptions";
 import { getServerSession } from "next-auth/next";
 
-export const dynamic = "force-static"; // 'auto' | 'force-dynamic' | 'error' | 'force-static';
+export const dynamic = "force-static";
 
 export default async function ReservationPage() {
   const session = await getServerSession(authOptions);

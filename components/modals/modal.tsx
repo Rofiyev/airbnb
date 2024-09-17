@@ -77,7 +77,7 @@ const Modal: FC<Props> = ({
               </button>
               <div className="text-lg font-semibold">{title}</div>
             </div>
-            <div className="max-h-[70vh] overflow-y-auto">
+            <div className="h-screen md:max-h-[70vh] overflow-y-auto">
               {/* === Body === */}
               <div className="relative p-6 flex-auto">{body}</div>
               {/* === Footer === */}

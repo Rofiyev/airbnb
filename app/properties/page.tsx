@@ -4,7 +4,7 @@ import PropertiesClient from "./_components/properties-client";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/libs/authOptions";
 
-export const dynamic = "force-static"; // 'auto' | 'force-dynamic' | 'error' | 'force-static';
+export const dynamic = "force-static";
 
 export default async function PropertiesPage() {
   const session = await getServerSession(authOptions);

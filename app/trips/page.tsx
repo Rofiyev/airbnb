@@ -4,7 +4,7 @@ import TripsClient from "./_components/trips-client";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/libs/authOptions";
 
-export const dynamic = "force-static"; // 'auto' | 'force-dynamic' | 'error' | 'force-static';
+export const dynamic = "force-static";
 
 export default async function TripsPage() {
   const session = await getServerSession(authOptions);
