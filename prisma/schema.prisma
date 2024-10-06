@@ -38,6 +38,9 @@ model Account {
   session_state     String?
   user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
   @@unique([provider, providerAccountId])
 }
 
@@ -62,7 +65,7 @@ model Listings {
 model Reservations {
   id         String   @id @default(auto()) @map("_id") @db.ObjectId
   userId     String?  @db.ObjectId
-  listingId String?  @db.ObjectId
+  listingId  String?  @db.ObjectId
   startDate  DateTime
   endDate    DateTime
   totalPrice Int

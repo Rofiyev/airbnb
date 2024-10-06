@@ -51,6 +51,15 @@ const RegisterModal = () => {
     loginModal.onOpen();
   }, [registerModal, loginModal]);
 
+  const authAction = (provider: string) => {
+    setIsLoading(true);
+
+    signIn(provider, { redirect: false })
+      .then(() => toast.success("Successfully!"))
+      .catch(() => toast.error("Something went wrong!"))
+      .finally(() => setIsLoading(false));
+  };
+
   const bodyContent = (
     <div className="flex flex-col gap-4">
       <Heading title="Welcome to Airbnb" subtitle="Create an account!" />
@@ -86,14 +95,16 @@ const RegisterModal = () => {
     <div className="flex flex-col gap-4 mt-3">
       <hr />
       <Button
-        onClick={() => signIn("google")}
+        onClick={() => authAction("google")}
         outline
+        disabled={isLoading}
         label="Continue with Google"
         icon={FcGoogle}
       />
       <Button
-        onClick={() => signIn("github")}
+        onClick={() => authAction("github")}
         outline
+        disabled={isLoading}
         label="Continue with Github"
         icon={AiFillGithub}
       />
